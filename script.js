@@ -35,5 +35,18 @@ function deleteNote(index){
     localStorage.setItem("notes", JSON.stringify(notes));
     displayNotes();
 }
+document.getElementById("search").addEventListener("input", function () {
+    const searchText = this.value.toLowerCase();
+    const notesElements = document.querySelectorAll(".note");
 
+    notesElements.forEach(note => {
+        const noteText = note.innerText.toLowerCase();
+
+        if (noteText.includes(searchText)) {
+            note.style.display = "block";
+        } else {
+            note.style.display = "none";
+        }
+    });
+});
 displayNotes();
